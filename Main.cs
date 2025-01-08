@@ -18,6 +18,12 @@ namespace VRChat_Photo_Directory_Changer
                 previousFolderLabel.Text = path;
             }
 
+            string path2 = "C:\\Users\\" + username + "\\OneDrive\\Pictures\\VRChat";
+            if (Directory.Exists(path2))
+            {
+                previousFolderLabel.Text = path2;
+            }
+
             string configPath = "C:\\Users\\" + username + "\\AppData\\Locallow\\VRChat\\VRChat\\config.json";
             if (!File.Exists(configPath)) return;
 
