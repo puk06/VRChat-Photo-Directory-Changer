@@ -34,7 +34,6 @@
             newFolderTextbox = new TextBox();
             openNewFolder = new Button();
             previousFolderLabel = new Label();
-            openPreviousFolder = new Button();
             SuspendLayout();
             // 
             // previousFolder
@@ -60,7 +59,7 @@
             // ChangeButton
             // 
             ChangeButton.Font = new Font("Yu Gothic UI", 13F);
-            ChangeButton.Location = new Point(253, 93);
+            ChangeButton.Location = new Point(253, 78);
             ChangeButton.Name = "ChangeButton";
             ChangeButton.Size = new Size(110, 35);
             ChangeButton.TabIndex = 2;
@@ -84,7 +83,6 @@
             openNewFolder.TabIndex = 5;
             openNewFolder.Text = "フォルダを開く";
             openNewFolder.UseVisualStyleBackColor = true;
-            openNewFolder.Click += openNewFolder_Click;
             // 
             // previousFolderLabel
             // 
@@ -96,30 +94,19 @@
             previousFolderLabel.TabIndex = 6;
             previousFolderLabel.Text = "取得できませんでした";
             // 
-            // openPreviousFolder
-            // 
-            openPreviousFolder.Location = new Point(484, 7);
-            openPreviousFolder.Name = "openPreviousFolder";
-            openPreviousFolder.Size = new Size(110, 30);
-            openPreviousFolder.TabIndex = 7;
-            openPreviousFolder.Text = "フォルダを開く";
-            openPreviousFolder.UseVisualStyleBackColor = true;
-            openPreviousFolder.Click += openPreviousFolder_Click;
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(606, 140);
-            Controls.Add(openPreviousFolder);
+            ClientSize = new Size(606, 123);
             Controls.Add(previousFolderLabel);
             Controls.Add(openNewFolder);
             Controls.Add(newFolderTextbox);
             Controls.Add(ChangeButton);
             Controls.Add(newFolder);
             Controls.Add(previousFolder);
-            MaximizeBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Main";
             Text = "VRChat Photo Directory Changer";
             ResumeLayout(false);
@@ -134,6 +121,5 @@
         private TextBox newFolderTextbox;
         private Button openNewFolder;
         private Label previousFolderLabel;
-        private Button openPreviousFolder;
     }
 }
