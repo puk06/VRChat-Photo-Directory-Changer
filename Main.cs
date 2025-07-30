@@ -55,7 +55,7 @@ internal partial class Main : Form
         }
         else
         {
-            MessageBox.Show("新しい保存先フォルダが存在しませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("新しい保存先フォルダが存在しなかったため変更できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
