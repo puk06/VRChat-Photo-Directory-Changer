@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace VRChat_Photo_Directory_Changer;
 
-public partial class Main : Form
+internal partial class Main : Form
 {
     private readonly Dictionary<string, dynamic> _configData = [];
     private static readonly JsonSerializerOptions _jsonSerializerOptions = new() { WriteIndented = true };
@@ -14,7 +14,7 @@ public partial class Main : Form
         "C:\\Users\\" + Username + "\\OneDrive\\Pictures\\VRChat"
     ];
 
-    public Main()
+    internal Main()
     {
         InitializeComponent();
 
@@ -24,26 +24,23 @@ public partial class Main : Form
             previousFolderLabel.Text = checkPath;
         }
         
-        if (!File.Exists(ConfigPath))
+        if (File.Exists(ConfigPath))
         {
-            MessageBox.Show("Configファイルが見つかりませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
+            string json = File.ReadAllText(ConfigPath);
+            var configData = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(json);
+            if (configData == null)
+            {
+                MessageBox.Show("Configファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-        string json = File.ReadAllText(ConfigPath);
-        var configData = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(json);
-        if (configData == null)
-        {
-            MessageBox.Show("Configファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
+            if (configData.TryGetValue("picture_output_folder", out dynamic? value))
+            {
+                previousFolderLabel.Text = value.ToString();
+            }
 
-        if (configData.TryGetValue("picture_output_folder", out dynamic? value))
-        {
-            previousFolderLabel.Text = value.ToString();
+            _configData = configData;
         }
-
-        _configData = configData;
     }
 
     private void ChangeButton_Click(object sender, EventArgs e)
