@@ -23,7 +23,7 @@ internal partial class Main : Form
             if (!Directory.Exists(checkPath)) continue;
             previousFolderLabel.Text = checkPath;
         }
-        
+
         if (File.Exists(ConfigPath))
         {
             string json = File.ReadAllText(ConfigPath);
@@ -57,5 +57,18 @@ internal partial class Main : Form
         {
             MessageBox.Show("新しい保存先フォルダが存在しなかったため変更できませんでした。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+    }
+
+    private void OpenNewFolder_Click(object sender, EventArgs e)
+    {
+        FolderBrowserDialog fbd = new()
+        {
+            UseDescriptionForTitle = true,
+            Description = "変更後のフォルダを選択してください",
+            ShowNewFolderButton = false
+        };
+
+        if (fbd.ShowDialog() != DialogResult.OK) return;
+        newFolderTextbox.Text = fbd.SelectedPath;
     }
 }

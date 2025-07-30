@@ -83,6 +83,7 @@
             openNewFolder.TabIndex = 5;
             openNewFolder.Text = "フォルダを開く";
             openNewFolder.UseVisualStyleBackColor = true;
+            openNewFolder.Click += OpenNewFolder_Click;
             // 
             // previousFolderLabel
             // 
